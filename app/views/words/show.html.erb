@@ -1,0 +1,15 @@
+<h1><%= @word.headword %></h1>
+<p>(<%= @word.pos %>) <%= @word.definition %></p>
+
+<% if @word.base_form.present? %>
+  <p>
+    原形:
+    <% if (base = @word.base_word) %>
+      <%= link_to base.headword, word_path(base) %>
+    <% else %>
+      <%= @word.base_form %>（未登録）
+    <% end %>
+  </p>
+<% end %>
+
+<%= link_to "検索に戻る", words_path %>

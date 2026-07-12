@@ -1,0 +1,19 @@
+<h1>イタリア語辞書検索</h1>
+
+<%= form_with url: words_path, method: :get, local: true do %>
+  <%= text_field_tag :q, @query, placeholder: "見出し語 or 意味で検索" %>
+  <%= submit_tag "検索" %>
+<% end %>
+
+<% if @query.present? %>
+  <p><%= @words.size %>件ヒット</p>
+  <ul>
+    <% @words.each do |word| %>
+      <li>
+        <%= link_to word.headword, word_path(word) %>
+        <% if word.pos.present? %>(<%= word.pos %>)<% end %>
+        — <%= word.definition %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
